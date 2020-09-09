@@ -1,18 +1,27 @@
 const fetch = require('node-fetch')
 exports.handler = async function(event, context) {
   try {
-    const response = await fetch('https://icanhazdadjoke.com', {
-      headers: { Accept: 'application/json' },
-    })
+    let response = await fetch('https://www.blaseball.com/api/getIdols')
     if (!response.ok) {
-      // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText }
     }
-    const data = await response.text()
+    const data = await response.json()
+    const playerIds = data.map(x => x.playerId)
+
+    response = await fetch(`https://www.blaseball.com/database/players?ids=${playerIds.join(',')}`)
+    if (!response.ok) {
+      return { statusCode: response.status, body: response.statusText }
+    }
+    const playerData = await response.json()
+
+    const idols = data.map(x => Object.assign(x, { player: playerData.find(y => x.playerId == y.id) }))
 
     return {
       statusCode: 200,
-      body: data,
+      body: JSON.stringify(idols),
+      headers: {
+        'Cache-Control': 'max-age=300',
+      }
     }
   } catch (err) {
     console.log(err) // output to netlify function log
