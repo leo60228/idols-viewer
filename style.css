@@ -27,7 +27,7 @@ html, body {
 
 li {
     display: grid;
-    grid-template-columns: 56fr 64fr 10fr;
+    grid-template-columns: 56fr 64fr 12fr;
     grid-gap: 5px;
     margin: 0 6px;
     padding: 2px 50px;
@@ -98,4 +98,24 @@ a {
 a:hover {
     color: #fff;
     border: 1px solid #fff;
+}
+
+.playerName {
+    hyphens: auto;
+}
+
+@media (max-width: 700px) {
+    li > .playerName::before {
+        margin: 5px 4px 5px 2px;
+        font-size: 1rem;
+    }
+
+    ol {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    li {
+        padding: 2px 0;
+    }
 }

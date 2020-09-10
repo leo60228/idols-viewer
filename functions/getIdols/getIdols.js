@@ -37,7 +37,8 @@ exports.handler = async function(event, context) {
     const playerData = await fetchJSON(`https://www.blaseball.com/database/players?ids=${playerIds.join(',')}`)
 
     const idols = data.map(x => {
-      const player = playerData.find(y => x.playerId === y.id)
+      let player = playerData.find(y => x.playerId === y.id)
+      player.name = player.name.replace('Hotdogfingers', 'Hotdog\u00ADfingers')
       let team = teams.find(y => y.lineup.includes(player.id) || y.rotation.includes(player.id))
       if (typeof team === 'undefined') team = {
         fullName: 'Null Team',
