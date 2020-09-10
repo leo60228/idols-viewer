@@ -2,13 +2,5 @@
 command = "#"
 functions = "functions"
 
-[build.processing.js]
-bundle = true
-minify = true
-
-[build.processing.css]
-bundle = true
-minify = true
-
-[build.processing.images]
-compress = true
+[build.processing]
+skip_processing = false
