@@ -104,6 +104,10 @@ a:hover {
     hyphens: auto;
 }
 
+.total {
+    justify-content: center;
+}
+
 @media (max-width: 700px) {
     li > .playerName::before {
         margin: 5px 4px 5px 2px;
