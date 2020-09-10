@@ -108,7 +108,7 @@ a:hover {
     justify-content: center;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1200px) {
     li > .playerName::before {
         margin: 5px 4px 5px 2px;
         font-size: 1rem;
