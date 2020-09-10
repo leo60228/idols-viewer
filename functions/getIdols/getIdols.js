@@ -38,10 +38,10 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(idols)
-      /* headers: {
-        'Cache-Control': 'max-age=300',
-      } */
+      body: JSON.stringify(idols),
+      headers: {
+        'Cache-Control': 'max-age=30',
+      }
     }
   } catch (err) {
     console.log(err) // output to netlify function log
