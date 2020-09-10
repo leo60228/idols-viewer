@@ -29,12 +29,23 @@ function fetchJSON(url) {
 
 exports.handler = async function(event, context) {
   try {
+    const teams = await fetchJSON('https://www.blaseball.com/database/allTeams')
+
     const data = await fetchJSON('https://www.blaseball.com/api/getIdols')
     const playerIds = data.map(x => x.playerId)
 
     const playerData = await fetchJSON(`https://www.blaseball.com/database/players?ids=${playerIds.join(',')}`)
 
-    const idols = data.map(x => Object.assign(x, { player: playerData.find(y => x.playerId == y.id) }))
+    const idols = data.map(x => {
+      const player = playerData.find(y => x.playerId === y.id)
+      let team = teams.find(y => y.lineup.includes(player.id) || y.rotation.includes(player.id))
+      if (typeof team === 'undefined') team = {
+        fullName: 'Null Team',
+        mainColor: '#999999',
+        emoji: '0x2753'
+      }
+      return Object.assign(x, { player, team })
+    })
 
     return {
       statusCode: 200,
