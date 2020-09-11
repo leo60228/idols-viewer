@@ -86,7 +86,12 @@ li > * {
     align-items: center;
 }
 
-a {
+small {
+    color: #aaa;
+    font-size: 14px;
+}
+
+a.nav {
     color: #aaa;
     font-size: 14px;
     padding: 5px 12px;
@@ -95,7 +100,7 @@ a {
     border-radius: 20px;
 }
 
-a:hover {
+a.nav:hover {
     color: #fff;
     border: 1px solid #fff;
 }
