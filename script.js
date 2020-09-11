@@ -1,5 +1,5 @@
 async function graph(player) {
-  const resp = await fetch('https://blase.srv.astr.cc/api/idols/hourly');
+  const resp = await fetch('/.netlify/functions/idolsHistory');
   const json = await resp.json();
   const x = json.hourly.map(x => new Date(x.timestamp));
   const y = json.hourly.map(x => x.players[player.playerId]);
