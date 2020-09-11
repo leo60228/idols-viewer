@@ -119,7 +119,7 @@ canvas {
 }
 
 dialog {
-    height: 60vh;
+    min-height: 60vh;
     width: 80vw;
     display: flex;
     flex-direction: column;
