@@ -33,16 +33,16 @@ li {
     padding: 2px 50px;
 }
 
-li:nth-child(1), li:nth-child(3), li:nth-child(2n+4) {
+/* li:nth-child(1), li:nth-child(3), li:nth-child(2n+4) */ li:nth-child(2n+1) {
     background: rgba(30, 30, 30, .64);
     background-clip: content-box;
 }
 
-li:nth-child(3) {
+/*li:nth-child(3) {
     border-bottom: 2px dashed red;
     padding-bottom: 12px;
     margin-bottom: 10px;
-}
+}*/
 
 li > .playerName::before {
     content: counter(item) " ";
