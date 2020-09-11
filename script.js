@@ -1,10 +1,10 @@
-let app = document.getElementById('app');
-let loading = document.createElement('span');
-loading.textContent = 'Loading...';
-app.classList.add('loading');
-app.appendChild(loading);
-
 async function main() {
+  let app = document.getElementById('app');
+  let loading = document.createElement('span');
+  loading.textContent = 'Loading...';
+  app.classList.add('loading');
+  app.appendChild(loading);
+
   let list = document.createElement('ol');
   const resp = await fetch('/.netlify/functions/getIdols');
   const json = await resp.json();
@@ -45,4 +45,4 @@ async function main() {
   loading.replaceWith(list);
 }
 
-main();
+window.addEventListener('load', main);
