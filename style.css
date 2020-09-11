@@ -111,6 +111,27 @@ a.nav:hover {
 
 .total {
     justify-content: center;
+    cursor: pointer;
+}
+
+canvas {
+    background: white;
+}
+
+dialog {
+    height: 60vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
+dialog > .close > span {
+    cursor: pointer;
+    float: right;
+}
+
+dialog > .chart-container {
+    flex-grow: 1;
 }
 
 @media (max-width: 1200px) {

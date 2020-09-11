@@ -1,9 +1,50 @@
+async function graph(player) {
+  const resp = await fetch('https://blase.srv.astr.cc/api/idols/hourly');
+  const json = await resp.json();
+  const x = json.hourly.map(x => new Date(x.timestamp));
+  const y = json.hourly.map(x => x.players[player.playerId]);
+  const chart = new Chart('myChart', {
+    type: 'line',
+    data: {
+      labels: x,
+      datasets: [{
+        label: 'Idolizers',
+        data: y
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            displayFormats: {
+              hour: 'MMM D hA'
+            },
+            unit: 'hour',
+          }
+        }]
+      },
+      maintainAspectRatio: false
+    }
+  });
+
+  document.querySelector('dialog').addEventListener('close', () => {
+    chart.destroy();
+  }, {
+    once: true
+  });
+}
+
 async function main() {
   let app = document.getElementById('app');
   let loading = document.createElement('span');
   loading.textContent = 'Loading...';
   app.classList.add('loading');
   app.appendChild(loading);
+
+  let dialog = document.querySelector('dialog');
+  dialogPolyfill.registerDialog(dialog);
+  document.querySelector('.close > span').addEventListener('click', () => dialog.close());
 
   let list = document.createElement('ol');
   const resp = await fetch('/.netlify/functions/getIdols');
@@ -36,6 +77,10 @@ async function main() {
     let total = document.createElement('div');
     total.classList.add('total');
     total.textContent = idol.total;
+    total.addEventListener('click', () => {
+      dialog.showModal();
+      graph(idol);
+    });
     item.appendChild(playerName);
     item.appendChild(team);
     item.appendChild(total);

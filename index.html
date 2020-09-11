@@ -5,12 +5,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Forbidden Idol Stats</title>
 		<script src="script.js" async></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+		<script src="https://unpkg.com/dialog-polyfill@0.5.3/dist/dialog-polyfill.js"></script>
+		<link href="https://unpkg.com/dialog-polyfill@0.5.3/dist/dialog-polyfill.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
 		<h1>Forbidden Idol Stats</h1>
 		<noscript>Page requires JavaScript.</noscript>
 		<p>IDOLS. IDOLS. IDOLS. IDOLS.</p>
+		<dialog>
+			<div class="close"><span>❌︎</span></div>
+			<div class="chart-container">
+				<canvas id="myChart" width="400" height="400"></canvas>
+			</div>
+		</dialog>
 		<div id="app"></div>
 		<p><small>This site is not endorsed by <a href="https://thegameband.com">The Game Band</a>.</small></p>
 		<p><a class="nav" href="https://github.com/leo60228/idols-viewer">Source</a></p>
