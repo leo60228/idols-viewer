@@ -45,6 +45,19 @@ async function main() {
   let dialog = document.querySelector('dialog');
   dialogPolyfill.registerDialog(dialog);
   document.querySelector('.close > span').addEventListener('click', () => dialog.close());
+  document.body.addEventListener('click', event => {
+    if (!dialog.open) return;
+    const rect = dialog.getBoundingClientRect();
+    const clickedInDialog = (
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width
+    );
+    if (!clickedInDialog) {
+      dialog.close();
+    }
+  });
 
   let list = document.createElement('ol');
   const resp = await fetch('/.netlify/functions/getIdols');
@@ -77,8 +90,9 @@ async function main() {
     let total = document.createElement('div');
     total.classList.add('total');
     total.textContent = idol.total;
-    total.addEventListener('click', () => {
+    total.addEventListener('click', event => {
       dialog.showModal();
+      event.stopPropagation();
       graph(idol);
     });
     item.appendChild(playerName);
