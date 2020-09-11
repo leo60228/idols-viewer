@@ -26,7 +26,7 @@ async function main() {
     teamColor.style.backgroundColor = idol.team.mainColor;
     let teamEmoji = document.createElement('div');
     teamEmoji.classList.add('teamEmoji');
-    teamEmoji.textContent = String.fromCodePoint(parseInt(idol.team.emoji, 16));
+    teamEmoji.textContent = String.fromCodePoint(parseInt(idol.team.emoji, 16)) + '\uFE0F';
     teamColor.appendChild(teamEmoji);
     team.appendChild(teamColor);
     let teamName = document.createElement('span');
