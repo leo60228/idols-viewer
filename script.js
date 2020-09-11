@@ -91,6 +91,11 @@ async function main() {
     total.classList.add('total');
     total.textContent = idol.total;
     total.addEventListener('click', event => {
+      (window.gtag || console.log)('event', 'Graph', {
+        event_category: 'Player',
+        event_label: idol.player.name
+      });
+
       dialog.showModal();
       event.stopPropagation();
       graph(idol);
