@@ -119,10 +119,15 @@ canvas {
 }
 
 dialog {
+    position: fixed;
     min-height: 60vh;
     width: 80vw;
     display: flex;
     flex-direction: column;
+}
+
+dialog::backdrop, dialog + .backdrop {
+    background: rgba(35, 35, 35, 0.5);
 }
 
 dialog > .close > span {
