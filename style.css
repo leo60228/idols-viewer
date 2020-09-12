@@ -30,7 +30,11 @@ li {
     grid-template-columns: 56fr 64fr 12fr;
     grid-gap: 5px;
     margin: 0 6px;
-    padding: 2px 50px;
+    padding: 0 50px;
+}
+
+li > .playerName {
+    padding: 5px 0;
 }
 
 /* li:nth-child(1), li:nth-child(3), li:nth-child(2n+4) */ li:nth-child(2n+1) {
