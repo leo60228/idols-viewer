@@ -1,8 +1,10 @@
 async function graph(player) {
   const resp = await fetch('/.netlify/functions/idolsHistory');
   const json = await resp.json();
-  const x = json.hourly.map(x => new Date(x.timestamp));
-  const y = json.hourly.map(x => x.players[player.playerId]);
+  let x = json.hourly.map(x => new Date(x.timestamp));
+  let y = json.hourly.map(x => x.players[player.playerId]);
+  x.push(new Date(player.time));
+  y.push(player.total);
   const chart = new Chart('myChart', {
     type: 'line',
     data: {

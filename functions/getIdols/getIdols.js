@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
         mainColor: '#999999',
         emoji: '0x2753'
       }
-      return Object.assign(x, { player, team })
+      return Object.assign(x, { player, team, time: new Date().toISOString() })
     })
 
     return {
