@@ -3,8 +3,6 @@ async function graph(player) {
   const json = await resp.json();
   let x = json.hourly.map(x => new Date(x.timestamp));
   let y = json.hourly.map(x => x.players[player.playerId]);
-  x.push(new Date(player.time));
-  y.push(player.total);
   const chart = new Chart('myChart', {
     type: 'line',
     data: {
@@ -91,7 +89,11 @@ async function main() {
     team.appendChild(teamName);
     let total = document.createElement('div');
     total.classList.add('total');
-    total.textContent = idol.total;
+    if (typeof idol.total !== 'undefined') {
+      total.textContent = idol.total;
+    } else {
+      total.textContent = "Graph";
+    }
     total.addEventListener('click', event => {
       (window.gtag || console.log)('event', 'Graph', {
         event_category: 'Player',
