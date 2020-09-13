@@ -47,7 +47,7 @@ exports.handler = async function(event, context) {
       }
       return Object.assign(x, { player, team, time: new Date().toISOString() })
     })
-    const rows = idols.map(idol => `"${idol.player.name}","${String.fromCodePoint(parseInt(idol.team.emoji, 16))} ${idol.team.fullName}","${idol.total}"`)
+    const rows = idols.map(idol => `"${idol.player.name}","${String.fromCodePoint(parseInt(idol.team.emoji, 16))}\uFE0F ${idol.team.fullName}","${idol.total}"`)
     const csv = rows.join('\n')
 
     return {
